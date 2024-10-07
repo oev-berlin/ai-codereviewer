@@ -12,8 +12,16 @@ inputs:
     required: false
     default: "gpt-4"
   OPENAI_API_BASE_URL:
-    description: "OpenAI API model."
-    required: false
+    description: "OpenAI API Base Url."
+    required: true
+    default: ""
+  OPENAI_API_DEPLOYMENT:
+    description: "OpenAI Deployment."
+    required: true
+    default: ""
+  OPENAI_API_VERSION:
+    description: "OpenAI API Version."
+    required: true
     default: ""
   exclude:
     description: "Glob patterns to exclude files from the diff analysis"

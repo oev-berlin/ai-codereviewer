@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import * as core from "@actions/core";
-import OpenAI from "openai";
+import { AzureOpenAI } from "openai";
 import { Octokit } from "@octokit/rest";
 import parseDiff, { Chunk, File } from "parse-diff";
 import minimatch from "minimatch";
@@ -8,13 +8,19 @@ import minimatch from "minimatch";
 const GITHUB_TOKEN: string = core.getInput("GITHUB_TOKEN");
 const OPENAI_API_KEY: string = core.getInput("OPENAI_API_KEY");
 const OPENAI_API_MODEL: string = core.getInput("OPENAI_API_MODEL");
+const OPENAI_API_DEPLOYMENT: string = core.getInput("OPENAI_API_DEPLOYMENT");
+const OPENAI_API_VERSION: string = core.getInput("OPENAI_API_VERSION");
 const OPENAI_API_BASE_URL: string = core.getInput("OPENAI_API_BASE_URL");
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
-const openai = new OpenAI({
+const openai = new AzureOpenAI({
   apiKey: OPENAI_API_KEY,
   baseURL: OPENAI_API_BASE_URL,
+  // gpt4o01
+  deployment: OPENAI_API_DEPLOYMENT,
+  // 2024-08-01-preview
+  apiVersion: OPENAI_API_VERSION,
 });
 
 interface PRDetails {
