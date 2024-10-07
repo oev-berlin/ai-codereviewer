@@ -58,9 +58,7 @@ const octokit = new rest_1.Octokit({ auth: GITHUB_TOKEN });
 const openai = new openai_1.AzureOpenAI({
     apiKey: OPENAI_API_KEY,
     baseURL: OPENAI_API_BASE_URL,
-    // gpt4o01
     deployment: OPENAI_API_DEPLOYMENT,
-    // 2024-08-01-preview
     apiVersion: OPENAI_API_VERSION,
 });
 function getPRDetails() {
@@ -162,7 +160,6 @@ function getAIResponse(prompt) {
                         content: prompt,
                     },
                 ] }));
-            console.log("Response:", response.choices);
             const res = ((_b = (_a = response.choices[0].message) === null || _a === void 0 ? void 0 : _a.content) === null || _b === void 0 ? void 0 : _b.trim()) || "{}";
             return JSON.parse(res).reviews;
         }

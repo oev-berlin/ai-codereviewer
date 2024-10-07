@@ -17,9 +17,7 @@ const octokit = new Octokit({ auth: GITHUB_TOKEN });
 const openai = new AzureOpenAI({
   apiKey: OPENAI_API_KEY,
   baseURL: OPENAI_API_BASE_URL,
-  // gpt4o01
   deployment: OPENAI_API_DEPLOYMENT,
-  // 2024-08-01-preview
   apiVersion: OPENAI_API_VERSION,
 });
 
@@ -144,7 +142,6 @@ async function getAIResponse(prompt: string): Promise<Array<{
       ],
     });
 
-    console.log("Response:", response.choices);
     const res = response.choices[0].message?.content?.trim() || "{}";
     return JSON.parse(res).reviews;
   } catch (error) {

@@ -12,15 +12,15 @@ inputs:
     required: false
     default: "gpt-4"
   OPENAI_API_BASE_URL:
-    description: "OpenAI API Base Url."
+    description: "OpenAI API Base Url like https://my-openai.openai.azure.com/."
     required: true
     default: ""
   OPENAI_API_DEPLOYMENT:
-    description: "OpenAI Deployment."
+    description: "OpenAI Deployment like gpt4o."
     required: true
     default: ""
   OPENAI_API_VERSION:
-    description: "OpenAI API Version."
+    description: "OpenAI API Version like 2024-08-01-preview."
     required: true
     default: ""
   exclude:
