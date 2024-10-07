@@ -154,9 +154,9 @@ function getAIResponse(prompt) {
             presence_penalty: 0,
         };
         try {
-            const response = yield openai.chat.completions.create(Object.assign(Object.assign(Object.assign({}, queryConfig), (OPENAI_API_MODEL === "gpt-4-1106-preview"
-                ? { response_format: { type: "json_object" } }
-                : {})), { messages: [
+            const response = yield openai.chat.completions.create(Object.assign(Object.assign({}, queryConfig), { 
+                // return JSON if the model supports it:
+                response_format: { type: "json_object" }, messages: [
                     {
                         role: "system",
                         content: prompt,
