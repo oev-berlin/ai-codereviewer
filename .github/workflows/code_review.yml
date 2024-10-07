@@ -12,9 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Code Review
-        uses: freeedcom/ai-codereviewer@main
+        uses: oev-berlin/ai-codereviewer@feat/azure
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_MODEL: "gpt-4-1106-preview"
+          OPENAI_API_MODEL: "gpt-4o"
+          OPENAI_API_BASE_URL: ${{ secrets.OPENAI_API_BASE_URL }}
           exclude: "yarn.lock,dist/**"
