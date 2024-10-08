@@ -22,28 +22,29 @@ review process.
 3. Create a `.github/workflows/main.yml` file in your repository and add the following content:
 
 ```yaml
-name: AI Code Reviewer
-
+name: Code Review with OpenAI
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+   pull_request:
+      types:
+         - opened
+         - synchronize
 permissions: write-all
 jobs:
-  review:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: AI Code Reviewer
-        uses: your-username/ai-code-reviewer@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # The GITHUB_TOKEN is there by default so you just need to keep it like it is and not necessarily need to add it as secret as it will throw an error. [More Details](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret)
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_MODEL: "gpt-4" # Optional: defaults to "gpt-4"
-          exclude: "**/*.json, **/*.md" # Optional: exclude patterns separated by commas
+   code_review:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v3
+         - name: Code Review
+           uses: oev-berlin/ai-codereviewer@main
+           with:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+              OPENAI_API_MODEL: "gpt-4o"
+              OPENAI_API_BASE_URL: ${{ secrets.OPENAI_API_BASE_URL }}
+              OPENAI_API_DEPLOYMENT: ${{ secrets.OPENAI_API_DEPLOYMENT }}
+              OPENAI_API_VERSION: ${{ secrets.OPENAI_API_VERSION }}
+              exclude: "yarn.lock,dist/**"
 ```
 
 4. Replace `your-username` with your GitHub username or organization name where the AI Code Reviewer repository is
